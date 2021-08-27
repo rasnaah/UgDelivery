@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:order_delivery/AcceptedOrders/accepted_orders.dart';
 import 'package:order_delivery/Screen/login.dart';
-import 'package:order_delivery/Screen/profile_page.dart';
 import 'package:order_delivery/Utility/custom_list_tile.dart';
-import 'order_page.dart';
+import 'package:order_delivery/View/acceptedOrderView.dart';
+import 'package:order_delivery/View/assignedOrderView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:order_delivery/Orders/order_details.dart';
 
 class Orders extends StatefulWidget {
   @override
@@ -119,8 +117,8 @@ class _OrdersState extends State<Orders> {
                   Icons.person,
                   'Profile',
                   () => {
-                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                        builder: (BuildContext context) => UserProfile()))
+                    /*Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                        builder: (BuildContext context) => UserProfile()))*/
                   },
                 ),
                 CustomListTile(
@@ -145,7 +143,8 @@ class _OrdersState extends State<Orders> {
           actions: [
             IconButton(
               onPressed: () {
-                new Orders();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new Orders()));
               },
               icon: Icon(Icons.refresh),
             ),
@@ -175,11 +174,9 @@ class _OrdersState extends State<Orders> {
           ),
           elevation: 20,
           titleSpacing: 20,
-          /*shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(50))),*/
         ),
         body: TabBarView(
-          children: [OrderList(), AcceptedOrders()],
+          children: [AssignedOrders(), AcceptedOrders()],
         ),
       ),
     );
